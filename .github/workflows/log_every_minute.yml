@@ -23,8 +23,11 @@ jobs:
 
       - name: Commit and push log.txt
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add log.txt
-          git commit -m "Log update: $(date)"
-          git push
+          git commit -m "Log update: $(date)" || echo "No changes to commit"
+          git push origin HEAD
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
