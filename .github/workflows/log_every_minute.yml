@@ -18,6 +18,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install dependencies
+        run: pip install pytz
+
+
       - name: Run the script
         run: python log_hello.py
 
